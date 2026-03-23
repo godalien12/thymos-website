@@ -1,101 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>THYMOS NEURO | Research & Outreach Directorate</title>
+    <title>THYMOS NEURO | Research Directorate</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root { 
-            --bg: #ffffff; 
-            --text: #1a1a1a; 
-            --accent: #0056b3; /* Deep Institutional Blue */
-            --cyan: #00d4ff;   /* High-Energy Accent */
-            --nav-bg: #f8f9fa; 
-            --border: #e1e4e8; 
-            --footer-bg: #1a1d21; 
+            --bg: #f0f4f8; 
+            --glass: rgba(255, 255, 255, 0.8);
+            --text: #102a43; 
+            --accent: #0056b3; 
+            --glow: #00d4ff;
+            --dark: #243b53;
         }
-        body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; padding-top: 80px; line-height: 1.6; }
         
-        .navbar { position: fixed; top: 0; width: 100%; height: 70px; background: var(--nav-bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; box-sizing: border-box; z-index: 1000; }
-        .logo-section { display: flex; align-items: center; gap: 12px; font-weight: 800; color: #000; font-size: 1.2rem; text-decoration: none; }
-        .logo-img { height: 45px; border-radius: 5px; }
-        .nav-links a { margin-left: 20px; color: #586069; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        body { 
+            background: radial-gradient(circle at top right, #e0eafc, #cfdef3); 
+            color: var(--text); 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            margin: 0; padding-top: 90px; min-height: 100vh;
+        }
 
-        .hero { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        h1 { font-size: 3.2rem; margin: 0; color: #000; font-weight: 800; letter-spacing: -1px; }
-        .tagline { font-size: 1.3rem; color: #444; margin: 20px 0; max-width: 850px; }
+        /* --- NAVIGATION --- */
+        .navbar { 
+            position: fixed; top: 0; width: 100%; height: 75px; 
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 50px; box-sizing: border-box; z-index: 1000;
+        }
+        .logo-section { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-img { height: 48px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .logo-text { font-weight: 800; color: var(--dark); font-size: 1.3rem; letter-spacing: -1px; }
 
-        /* BUTTONS WITH NEW COLORS */
-        .btn-primary { display: inline-block; padding: 16px 32px; background: var(--accent); color: #fff !important; text-decoration: none; border-radius: 8px; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-primary:hover { background: #004494; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3); }
+        /* --- HERO SECTION --- */
+        .hero { max-width: 1100px; margin: 40px auto; padding: 40px; text-align: center; }
+        .hero h1 { font-size: 3.8rem; margin: 0; color: var(--dark); font-weight: 900; line-height: 1; letter-spacing: -2px; }
+        .hero span { color: var(--accent); text-shadow: 0 0 20px rgba(0,212,255,0.2); }
+        .tagline { font-size: 1.3rem; color: #486581; margin: 25px auto; max-width: 800px; font-weight: 500; }
+
+        /* --- ACTION BUTTONS --- */
+        .btn-group { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+        .btn { 
+            padding: 18px 35px; border-radius: 12px; font-weight: 700; text-decoration: none; 
+            transition: 0.3s; font-size: 1rem; border: none; cursor: pointer;
+        }
+        .btn-main { background: var(--accent); color: white; box-shadow: 0 10px 20px rgba(0,86,179,0.2); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,86,179,0.3); background: #004494; }
+        .btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+        .btn-outline:hover { background: rgba(0,86,179,0.05); transform: translateY(-2px); }
+
+        /* --- THE GLASS CARDS --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .glass-card { 
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 24px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .vision-stat { 
+            background: linear-gradient(135deg, #102a43, #243b53); color: white; 
+            padding: 30px; border-radius: 20px; margin-bottom: 30px;
+        }
         
-        /* MOTIVATIONAL BOX */
-        .vision-box { background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%); padding: 40px; border-radius: 12px; margin: 40px 0; border-left: 5px solid var(--cyan); }
-        .vision-box h3 { margin-top: 0; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
-        .vision-box p { font-size: 1.4rem; font-weight: 600; color: #243b53; line-height: 1.4; font-style: italic; }
+        /* --- SIDEBAR --- */
+        .sidebar-item { 
+            background: white; padding: 20px; border-radius: 15px; 
+            margin-bottom: 15px; border: 1px solid var(--border); transition: 0.3s;
+            text-decoration: none; display: block; color: var(--dark); font-weight: 600;
+        }
+        .sidebar-item:hover { border-color: var(--glow); transform: translateX(10px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; max-width: 1000px; margin: 60px auto; padding: 0 20px; }
-        .card { border-top: 3px solid var(--cyan); padding-top: 20px; }
-        .sidebar { background: #f6f8fa; padding: 25px; border-radius: 10px; border: 1px solid var(--border); }
-        .sidebar-link { display: block; margin: 12px 0; color: var(--accent); text-decoration: none; font-weight: 700; }
-
-        .footer { background: var(--footer-bg); color: #fff; padding: 40px; text-align: center; margin-top: 80px; }
+        .footer { text-align: center; padding: 50px; color: #627d98; font-size: 0.9rem; font-weight: 600; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
         <a href="index.html" class="logo-section">
-            <img src="logo.png" alt="TN" class="logo-img">
-            THYMOS NEURO
+            <img src="logo.png" alt="" class="logo-img" onerror="this.src='https://via.placeholder.com/150/0056b3/FFFFFF?text=TN'">
+            <div class="logo-text">THYMOS NEURO</div>
         </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="https://instagram.com/thymosneuro">Instagram</a>
-            <a href="mailto:thymosneuro@gmail.com?subject=Inquiry to Directorate">Contact</a>
+        <div class="nav-links" style="display:flex; gap:20px;">
+            <a href="index.html" style="text-decoration:none; color:var(--dark); font-weight:700;">Home</a>
+            <a href="https://instagram.com/thymosneuro" style="text-decoration:none; color:#586069;">Instagram</a>
         </div>
     </nav>
 
-    <div class="hero">
-        <h1>Engineering the Future of Cognitive Utility.</h1>
-        <p class="tagline">An elite Phoenix-based research and outreach organization dedicated to bridging the gap between theoretical neuroscience and community impact.</p>
-        
-        <a href="https://discord.gg/YQhptznv" class="btn-primary">📡 JOIN OPERATIONS HUB</a>
-        <a href="mailto:thymosneuro@gmail.com?subject=Contact%20Directorate" class="btn-primary" style="background: #24292e; margin-left: 10px;">📧 EMAIL DIRECTORATE</a>
-    </div>
+    <section class="hero">
+        <h1>Engineering <span>Cognitive Utility</span>.</h1>
+        <p class="tagline">An elite Phoenix-based research collective bridging the gap between theoretical physics, neuroscience, and community infrastructure.</p>
+        <div class="btn-group">
+            <a href="https://discord.gg/YQhptznv" class="btn btn-main">📡 JOIN OPERATIONS HUB</a>
+            <a href="mailto:thymosneuro@gmail.com?subject=Directorate%20Inquiry" class="btn btn-outline">📧 CONTACT DIRECTORATE</a>
+        </div>
+    </section>
 
-    <div class="hero">
-        <div class="card">
-            <h2>Research Partnership</h2>
-            <p>Thymos Neuro operates in alignment with the <strong>Dr. Interested</strong> ecosystem, a global network for youth-led scientific innovation.</p>
-            <div style="margin-top: 20px;">
-                <a href="https://www.drinterested.org/" class="btn-primary" style="background: #24292e; padding: 12px 25px; font-size: 0.9rem;">🌐 Visit Dr. Interested</a>
-                <a href="https://discord.gg/ugfdkjvc" class="btn-primary" style="padding: 12px 25px; font-size: 0.9rem; margin-left: 10px;">💬 Partner Discord</a>
+    <div class="container">
+        <div class="glass-card">
+            <h2 style="margin-top:0; font-size:1.8rem;">Current Initiatives</h2>
+            <p><strong>Phase 1: Operational Scaling</strong> – Recruiting specialists for our core leadership tiers. We are looking for high-utility individuals at the 8th grade to University level.</p>
+            <p><strong>Theoretical Research</strong> – Developing computational models for cosmological coupling and neural network optimization.</p>
+            
+            <div class="vision-stat">
+                <h3 style="margin-top:0; color: var(--glow); font-size:0.8rem; text-transform:uppercase; letter-spacing:2px;">Director's Directive</h3>
+                <p style="font-size:1.1rem; font-style:italic; margin:0;">"We are not here to observe the future; we are here to architect it. Absolute Utility is the only metric."</p>
+            </div>
+
+            <h3>Strategic Partnerships</h3>
+            <p>Affiliated with the <strong>Dr. Interested</strong> ecosystem. Working toward a global network of youth-led scientific advancement.</p>
+            <div style="display:flex; gap:10px;">
+                <a href="https://www.drinterested.org/" class="btn btn-main" style="padding:10px 20px; font-size:0.8rem; background:#243b53;">🌐 WEBSITE</a>
+                <a href="https://discord.gg/ugfdkjvc" class="btn btn-main" style="padding:10px 20px; font-size:0.8rem;">💬 DISCORD</a>
             </div>
         </div>
 
-        <div class="vision-box">
-            <h3>Director's Directive</h3>
-            <p>"We are not here to observe the future; we are here to architect it. Whether through theoretical physics or local community outreach, our goal is the same: Absolute Utility. The 390-man division starts with the first step. Join the expansion."</p>
-        </div>
-    </div>
-
-    <div class="main-grid">
-        <div class="card">
-            <h2>Current Initiatives</h2>
-            <p><strong>Phase 1: Operational Scaling</strong> – Recruiting specialists for our core leadership tiers. <strong>Theoretical Research</strong> – Computational models and cosmological coupling simulation.</p>
-        </div>
-
-        <div class="sidebar">
-            <h3>Operative Resources</h3>
-            <a href="https://godalien12.github.io/thymos-diagnostic/" class="sidebar-link">🔍 Recruitment Diagnostic</a>
-            <a href="https://docs.google.com/document/d/13In1GFXuGDf0e_xlH3TLc-woN2C9PQCWMtxooZpJw7E/edit?usp=sharing" class="sidebar-link">📂 Staffing Hierarchy</a>
-            <a href="https://discord.gg/YQhptznv" class="sidebar-link">💬 Official Discord</a>
+        <div>
+            <h3 style="margin-left:10px;">Operative Assets</h3>
+            <a href="https://godalien12.github.io/thymos-diagnostic/" class="sidebar-item">🔍 Start Recruitment Diagnostic</a>
+            <a href="https://docs.google.com/document/d/13In1GFXuGDf0e_xlH3TLc-woN2C9PQCWMtxooZpJw7E/edit?usp=sharing" class="sidebar-item">📂 Staffing Hierarchy</a>
+            <a href="https://discord.gg/YQhptznv" class="sidebar-item">📡 Comm-Link (Discord)</a>
+            <a href="https://instagram.com/thymosneuro" class="sidebar-item">📸 Instagram Feed</a>
         </div>
     </div>
 
     <div class="footer">
-        THYMOS NEURO | PHOENIX DIVISION [AZ] | © 2026 :P
+        PHX DIVISION • EST. 2026 • THYMOS NEURO DIRECTORATE :P
     </div>
 
 </body>
