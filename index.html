@@ -3,139 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thymos Neuro | PHX Division</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <title>Thymos Neuro | Phx Division</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030712;
-            --glass: rgba(17, 24, 39, 0.7);
-            --accent: #3b82f6;
-            --text: #f3f4f6;
+            --bg: #0a0a0a;
+            --card-bg: #111111;
+            --mint: #2dd4bf; /* Clinical Chic Mint */
+            --blue: #2563eb;
+            --white: #ffffff;
+            --gray: #71717a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { 
-            background-color: var(--bg); 
-            color: var(--text); 
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #030712 100%);
-        }
+        body { background-color: var(--bg); color: var(--white); }
 
         /* --- NAVIGATION --- */
         nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: var(--glass); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 50px;
+            padding: 20px 5%; background: var(--bg); border-bottom: 1px solid #222;
+            position: sticky; top: 0; z-index: 100;
         }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { 
-            color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.9rem;
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .brain-icon {
+            width: 35px; height: 35px; background: var(--blue); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white;
         }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: var(--gray); text-decoration: none; font-size: 14px; }
+        .cta-interested { background: var(--blue); padding: 8px 20px; border-radius: 5px; text-decoration: none; color: white; font-weight: 600; }
 
-        /* --- THE BRAIN-T ICON --- */
-        .brain-t {
-            width: 50px; height: 50px; background: var(--accent);
-            border-radius: 50% 50% 40% 40%; position: relative;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-            animation: pulse 2s infinite;
+        /* --- HERO --- */
+        .hero { padding: 100px 5%; text-align: center; }
+        .badge { 
+            display: inline-block; background: rgba(45, 212, 191, 0.1); 
+            color: var(--mint); padding: 5px 15px; border-radius: 20px; 
+            font-size: 11px; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px;
         }
-        .brain-t::before { content: 'T'; font-family: 'Space Mono'; font-weight: bold; font-size: 1.5rem; color: white; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .hero h1 { font-size: 42px; margin-bottom: 15px; }
+        .hero p { color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto; }
 
-        /* --- HERO SECTION --- */
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
-        .hero p { font-family: 'Space Mono'; color: var(--accent); margin-bottom: 30px; }
-
-        .btn-join {
-            background: var(--accent); color: white; padding: 15px 40px;
-            border-radius: 50px; text-decoration: none; font-weight: bold;
-            display: inline-flex; align-items: center; gap: 15px; transition: 0.3s;
+        /* --- CORE PILLARS --- */
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; padding: 50px 5%; 
         }
-        .btn-join:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); }
-
-        /* --- SIDEWAYS SCROLL (INSTA-STYLE) --- */
-        .field-reports { padding: 80px 20px; text-align: center; }
-        .scroll-container {
-            display: flex; overflow-x: auto; gap: 20px; padding: 40px 0;
-            scroll-snap-type: x mandatory; scrollbar-width: none;
+        .card { 
+            background: var(--card-bg); padding: 30px; border-radius: 12px; 
+            border: 1px solid #222; 
         }
-        .scroll-container::-webkit-scrollbar { display: none; }
-        .report-card {
-            flex: 0 0 300px; height: 350px; background: var(--glass);
-            border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
-            scroll-snap-align: center; overflow: hidden; position: relative;
-        }
-        .report-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .report-tag { position: absolute; bottom: 20px; left: 20px; font-family: 'Space Mono'; font-size: 0.8rem; background: var(--accent); padding: 5px 10px; border-radius: 5px; }
+        .card h3 { margin-bottom: 15px; color: var(--mint); font-size: 18px; }
+        .card p { color: var(--gray); font-size: 14px; }
 
-        /* --- FORM SECTION --- */
-        .form-section { padding: 100px 20px; max-width: 800px; margin: auto; }
-        .glass-panel { background: var(--glass); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        /* --- INTAKE SECTION --- */
+        .intake-section { padding: 80px 5%; background: #0c0c0c; display: flex; flex-wrap: wrap; gap: 40px; }
+        .intake-text { flex: 1; min-width: 300px; }
+        .intake-text h2 { margin-bottom: 20px; }
+        .intake-text ul { list-style: none; color: var(--gray); }
+        .intake-text li { margin-bottom: 10px; }
+        .intake-text b { color: var(--white); }
+
+        .form-box { 
+            flex: 1; min-width: 300px; background: var(--card-bg); 
+            padding: 30px; border-radius: 12px; border: 1px solid #222;
+        }
         input, select, textarea { 
-            width: 100%; padding: 15px; margin: 10px 0; background: rgba(0,0,0,0.3); 
-            border: 1px solid #374151; color: white; border-radius: 10px;
+            width: 100%; padding: 12px; margin-bottom: 15px; 
+            background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 5px;
         }
+        .submit-btn { 
+            width: 100%; padding: 15px; background: var(--blue); border: none; 
+            color: white; font-weight: 700; cursor: pointer; border-radius: 5px;
+        }
+
+        /* --- SIDEWAYS SCROLL --- */
+        .scroll-section { padding: 60px 5%; }
+        .scroll-container { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; }
+        .scroll-card { flex: 0 0 250px; height: 250px; border-radius: 10px; overflow: hidden; background: #222; }
+        .scroll-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+
+        footer { padding: 40px; text-align: center; border-top: 1px solid #222; color: var(--gray); font-size: 11px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div class="brain-t"></div>
-            <span style="font-weight: bold; letter-spacing: 2px;">THYMOS</span>
+        <div class="logo">
+            <div class="brain-icon">T</div>
+            THYMOS NEURO
         </div>
         <ul class="nav-links">
-            <li><a href="#">Intel</a></li>
-            <li><a href="#">Directorate</a></li>
-            <li><a href="#">Research</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Our Work</a></li>
+            <li><a href="#">Events</a></li>
             <li><a href="#">Archive</a></li>
-            <li><a href="#">Portal</a></li>
         </ul>
+        <a href="#join" class="cta-interested">Interested?</a>
     </nav>
 
     <section class="hero">
-        <h1>EXPANSION PHASE 01</h1>
-        <p>[390-MAN GLOBAL INITIATIVE]</p>
-        <a href="#join" class="btn-join">JOIN OPERATIONS <div class="brain-t" style="width: 25px; height: 25px; box-shadow: none;"></div></a>
+        <div class="badge">PHASE 01: INITIATION</div>
+        <h1>The Phx Expansion</h1>
+        <p>Building the foundation for a global research collective in theoretical neuroscience and computational physics.</p>
     </section>
 
-    <section id="join" class="form-section">
-        <div class="glass-panel">
-            <h2 style="margin-bottom: 20px;">DIAGNOSTIC INTAKE</h2>
-            <form action="YOUR_WEBHOOK_URL" method="POST">
-                <input type="text" placeholder="Full Identity (Name)" required>
-                <input type="text" placeholder="Discord Operative Tag" required>
+    <section class="grid">
+        <div class="card">
+            <h3>Research Aim</h3>
+            <p>Focusing on cosmological coupling and neural infrastructure development. We turn theory into utility.</p>
+        </div>
+        <div class="card">
+            <h3>Strategic Growth</h3>
+            <p>Launching the 390-man operative network starting April 2nd. Scaling from the Phoenix hub.</p>
+        </div>
+        <div class="card">
+            <h3>Collaboration</h3>
+            <p>Directly mentored by established initiative founders to ensure high-tier organizational standards.</p>
+        </div>
+    </section>
+
+    <section id="join" class="intake-section">
+        <div class="intake-text">
+            <h2>Support the Grind</h2>
+            <p style="margin-bottom: 20px; color: var(--gray);">We are a student-led initiative. All support goes directly into:</p>
+            <ul>
+                <li>• <b>Research Tools:</b> Software and server access.</li>
+                <li>• <b>Event Logistics:</b> Local summits and study cycles.</li>
+                <li>• <b>Operations:</b> Building the 390-man infrastructure.</li>
+            </ul>
+            <p style="margin-top: 30px; font-size: 14px; color: var(--mint);"><b>E-Transfer:</b> finance@thymosneuro.org</p>
+        </div>
+        <div class="form-box">
+            <h3 style="margin-bottom: 20px;">Join Operations</h3>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Discord Tag" required>
                 <select required>
                     <option value="" disabled selected>Target Division</option>
-                    <option>Executive Directorate</option>
-                    <option>Research & Physics</option>
-                    <option>Tech & Systems</option>
-                    <option>Outreach & Finance</option>
+                    <option>Executive</option>
+                    <option>Research</option>
+                    <option>Tech/Systems</option>
+                    <option>Outreach</option>
                 </select>
-                <textarea placeholder="Portfolio / Evidence of Utility" rows="4"></textarea>
-                <button type="submit" class="btn-join" style="width: 100%; border: none; cursor: pointer; justify-content: center;">SUBMIT DOSSIER</button>
+                <textarea placeholder="Portfolio / Evidence of Utility" rows="3"></textarea>
+                <button type="submit" class="submit-btn">Submit Dossier</button>
             </form>
         </div>
     </section>
 
-    <section class="field-reports">
-        <h2 style="font-family: 'Space Mono'; letter-spacing: 5px;">FIELD REPORTS</h2>
+    <section class="scroll-section">
+        <h3 style="margin-bottom: 20px; font-size: 14px; color: var(--gray);">FIELD UPDATES</h3>
         <div class="scroll-container">
-            <div class="report-card"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=300" alt="R1"><div class="report-tag">NEURAL_MAP_V1</div></div>
-            <div class="report-card"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300" alt="R2"><div class="report-tag">DATA_SYNC</div></div>
-            <div class="report-card"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=300" alt="R3"><div class="report-tag">PHX_CORE</div></div>
-            <div class="report-card"><img src="https://images.unsplash.com/photo-1614728263952-84ea206f99b6?auto=format&fit=crop&w=300" alt="R4"><div class="report-tag">INTEL_09</div></div>
-            <div class="report-card"><img src="https://images.unsplash.com/photo-1532187875605-2fe35851142b?auto=format&fit=crop&w=300" alt="R5"><div class="report-tag">RESEARCH_04</div></div>
+            <div class="scroll-card"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=400"></div>
+            <div class="scroll-card"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400"></div>
+            <div class="scroll-card"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400"></div>
+            <div class="scroll-card"><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=400"></div>
         </div>
     </section>
+
+    <footer>
+        &copy; 2026 Thymos Neuro | Student-Led Initiative. Phoenix, AZ. :P
+    </footer>
 
 </body>
 </html>
